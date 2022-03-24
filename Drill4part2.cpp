@@ -82,7 +82,7 @@ int main(){
  	
  	vector<Person> vec;
  	
- 	for(Person p; cin <<  p.;){
+ 	for(Person p; cin <<  p;){
  		if(p.first()=="end"){
 			 cout<< "vége" <<'\n'; 
 			 break;
