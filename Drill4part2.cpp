@@ -45,7 +45,7 @@ class Person{
 		
 	private:
 		//string n;
-		string f;  //refactoring
+		string f;  
 		string l;
 		int a;
 

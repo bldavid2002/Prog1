@@ -1,8 +1,4 @@
-#include <iostream>
-#include <string>
-#include <vector>
-
-using namespace std;
+#include "std_lib_facilities.h"
 
 template<typename T>
 struct S{
@@ -13,6 +9,11 @@ struct S{
 	void set(T new_t){val = new_t;}
 	//tultelherés
 	void operator=(const T& s);
+
+	
+
+
+
 	private:
  	T val;
 };
@@ -25,26 +26,56 @@ template<typename T>
 		T& S<T>::get() {
 		return val;
 }
+
 //constatns 
 
 template<typename T>
 	const	T& S<T>::get() const{
 		return val;
 }
+
 //tultelrhelés
 template<typename T>
 void S<T>::operator=(const T& s){
 	val=s;
+	
 }	
 
+//bekérés
 
 template<typename T>
-void read_val(T& v){
-	cin >> v;
+istream& operator>>(istream& is, vector<T>& v)
+{	
+	char ch = 0;
+	is >> ch;
+	if(ch != '{'){
+		is.unget();
+		return is;
+	
+	}
+	for(T val; is >> val;){
+		v.push_back(val);
+		cin >>ch;
+		if(ch != ',') break;
+	
+	}
+	return is;
+	
+
 }
 
+
+
+
+
+
+
 template<typename T>
-std::ostream& operator<<(ostream& os,vector<T&> v){
+void read__val(T& k){
+	cin >> k;
+}
+
+template<class T> ostream& operator<<(ostream& os, const vector<T>& v){
 	os<<"{";
 	for(int i=0;i<v.size();++i){
 		os << v[i]<<(i<v.size()-1 ? ", ": " ");
@@ -56,38 +87,40 @@ std::ostream& operator<<(ostream& os,vector<T&> v){
 
 }
 
-//bekérés
-template<typename T>
-istream& operator>>(istream is, vector<T>& v)
-{	
-	char ch = 0;
-	is >> ch;
-	if(ch != '{'){
-		is.unget();
-		return is;
-	
-	}
-	for(T val; is >> val;){
-		v.push_back(val);
-		is >>ch;
-		if(ch != '.') break;
-	
-	}
-	return is;
 
+
+
+template<typename T> istream& operator>>(istream& is, S<T>& ss)
+{
+    T v;
+    cin >> v;
+    if (!is) return is;
+    ss = v;
+    return is;
 }
 
-//
+
+
+
+
+
+
+
+
 int main(){
 
-
+try{
 	S<int> s;
 	S<int> si{37};
 	S<char> c{'c'};
 	S<double> d{3.2};
-	S<std::string> ss{"Hello"};
+	S<string> ss{"Hello"};
 	//S-tipusu vector ami inteket tartalmaz
-	S<std::vector<int>> svi{std::vector<int>{1,2,3,4,5,6,7,8,9,10}};
+	vector<int> vi;
+	vi.push_back(1);
+	vi.push_back(2);
+	vi.push_back(3);
+	S<vector<int>> svi(vi);
 	
 	
 	cout<<"S-int : "<< s.get()<<endl;
@@ -106,29 +139,43 @@ int main(){
 	cout<<"S-char : "<<c.get()<<endl;
 	//lehet egyenlőség jelet használni
 	d=42.1;
-/*
-	cout<<"S-double : "<< d.get()<<endl;
+	
+	vi[1]=12;
+	svi.set(vi);
+	for(int i=0;i<svi.get().size();++i){
+		cout<< svi.get()[i] <<";";
+	}
+
+	cout<<"\nS-double : "<< d.get()<<endl;
 	 int ii;
-	 read_val(ii);
+	 read__val(ii);
 	 S<int>i2{ii};
 	 
 	 double ddd;
-	 read_val(ddd);
+	 read__val(ddd);
 	 S<double>d2{ddd};
 	 
 	 string str;
-	 read_val(str);
+	 read__val(str);
 	 S<string>s2{str};
 	 
 	cout<<"S-string : "<< s2.get()<<endl;
 	cout<<"S-int : "<< i2.get()<<endl;
 	cout<<"S-double : "<< d2.get()<<endl;
-*/
-	cout << "S<vector<int>>: (format: { val, val, val}) ";
-    vector<int> vec;
-    read_val(vec);
-    S<vector<int>> svi2 {vec};
-	
-//	cout << "S<vector<int>> svi2: " << svi2.get()<<endl;
 
+	cout << "S<vector<int>>: (format: { val, val, val}) \n";
+   
+   
+
+	
+    
+	read__val(svi);
+	cout << "S<vector<int>> svi2: " << svi.get()<<endl;
+	
+}catch (exception& e) {
+    cerr << "Exception: " << e.what() << "\n";
+}
+catch (...) {
+    cerr << "Exception\n";
+}
 }
