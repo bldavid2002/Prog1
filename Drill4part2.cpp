@@ -2,8 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <stdexcept>
-#include "Simple_window.h"
-#include "Graph.h"
+
+
 
 using namespace std;
 
