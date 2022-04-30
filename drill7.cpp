@@ -5,7 +5,7 @@
 #include <list>
 //#include <stdexception>
 
-using namespace std;
+#include "std_lib_facilities.h"
 
 template<typename C>
 
@@ -51,14 +51,14 @@ for(int i = 0; i<size;++i) arr[i] =i;
 	std::array<int,size> ai;
 	std::copy(arr,arr+size,ai.begin());
 
-	std::vector<int> vi(size);
+	vector<int> vi(size);
 	std::copy(arr,arr+size,vi.begin());
 
 	std::list<int> li(size);
 	std::copy(arr,arr+size,li.begin());
 	
 	std::array<int,size> ai2=ai;
-	std::vector<int> vi2=vi;
+	vector<int> vi2=vi;
 	std::list<int> li2=li;
 
 
@@ -84,8 +84,8 @@ for(int i = 0; i<size;++i) arr[i] =i;
 	print(li2);
 	print(vi2);
 	
-	std::vector<int>::iterator vit;
-	vit =std::find(vi2.begin(),vi2.end(),3);
+	vector<int>::iterator vit;
+	vit = std::find(vi2.begin(),vi2.end(),3);
 	if(vit==vi2.end()){
 		std::cout <<"Found at: "<<std::distance(vi2.begin(),vit)<<std::endl;
 		}
