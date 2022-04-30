@@ -1,7 +1,3 @@
-#include "Window.h"
-#include "Graph.h"
-#include "Simple_window.h"
-
 #include <string>
 #include <iostream>
 
@@ -21,7 +17,7 @@ class B1{
     	cout<<"B1::f()"<<'\n';
     	}
 
-	virtual void pvf()=0
+	virtual void pvf()=0;
 };
 
 class D1: public B1{
@@ -39,18 +35,21 @@ class D2:public D1{
 };
 
 class B2{
+	public:
  	virtual void pvf()=0;
+	
 };
 
 class D21:public B2{
-
- void pvf(){cout<<s<<'\n';}
- string s;
+public:	
+ 	void pvf(){cout<<s<<'\n';}
+	 string s;
  
 };
 
 class D22:public B2{
 
+public:
 
  void pvf(){cout<<n<<'\n';}
  int n;
@@ -67,19 +66,22 @@ int main(){
 	b.vf();
 	b.f();*/
 	
+	/*
 	D1 d;
 	d.vf();
 	d.f();
+	*/
 	
 	/*B1& bref =d;
 	bref.vf();
 	bref.f();*/
 	
+	/*
 	D2 d2;
 	d2.f();
 	d2.vf();
 	d2.pvf();
-
+	*/
 
 	D2 d2;
 	d2.f();
@@ -89,9 +91,11 @@ int main(){
 	D21 d21;
 	d21.s ="d21.s";
 	D22 d22;
-	d22.n= 22;
+	d22.n=22;
+
 	f(d21);
 	f(d22);
+
 
 	cout<<"vége"<<'\n';
 	return 0;
