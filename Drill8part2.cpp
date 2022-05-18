@@ -104,7 +104,7 @@ try{
 	int n=0;
 	for(int i=0;i<vd.size();i++){
 			if (vd[i]<vd_mean){
-				i++;
+				
 				vd2.push_back(vd[i]);
 			}
 	}
